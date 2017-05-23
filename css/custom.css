@@ -1,0 +1,16 @@
+
+html {
+    height: 150px;
+    width: 200px;
+}
+
+body {
+    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+    font-size: 100%;
+    padding: 20px 30px;
+}
+
+.github-username {
+    overflow: hidden;
+    font-size: 14px;
+}

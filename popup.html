@@ -1,0 +1,27 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+    <head>
+        <title>Chrome Helper</title>
+
+        <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+        <script src="js/popup.js"></script>
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/custom.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="form-group github-username">
+            <label>Github username:</label>
+            <input type="text" class="form-control" id="github-username">
+        </div>
+        <!-- <div>
+            <span>Github Code Review</span>
+        </div> -->
+    </body>
+</html>
+

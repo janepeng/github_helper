@@ -17,6 +17,16 @@ function getNextSiblingWhere(el, filter) {
     }
 }
 
+function handleMoveFileUp(e) {
+    var fileEl = e.target.closest('.file');
+    moveFileUp(fileEl);
+}
+
+function handleMoveFileDown(e) {
+    var fileEl = e.target.closest('.file');
+    moveFileDown(fileEl);
+}
+
 function swapFileElements(fileEl1, fileEl2) {
     var anchorEl1 = fileEl1.previousElementSibling;
     var anchorEl2 = fileEl2.previousElementSibling;
@@ -39,3 +49,35 @@ function moveFileDown(fileEl) {
     if (!nextFileEl) return;
     swapFileElements(fileEl, nextFileEl);
 }
+
+function addClasses(el, ...classes) {
+    classes.forEach(className => el.classList.add(className));
+}
+
+function createButton(text, tooltip, action) {
+    var button = document.createElement('a');
+    button.innerHTML = text;
+    button.setAttribute('aria-label', tooltip);
+    addClasses(button, "btn", "btn-sm", "tooltipped", "tooltipped-nw");
+    button.addEventListener('click', action);
+    return button;
+}
+
+function addOrderingButtons(toolbarEl) {
+    if (toolbarEl.classList.contains('has-ordering-buttons')) return;
+    var moveUpEl = createButton("Move up", "Move file up in file order", handleMoveFileUp);
+    var moveDownEl = createButton("Move down", "Move file down in file order", handleMoveFileDown);
+    toolbarEl.prepend(moveUpEl);
+    toolbarEl.prepend(moveDownEl);
+    toolbarEl.classList.add('has-ordering-buttons');
+}
+
+document.querySelectorAll('.file-actions').forEach(addOrderingButtons);
+
+var observer = new MutationObserver(function (mutations) {
+    document.querySelectorAll('.file-actions').forEach(addOrderingButtons);
+});
+
+var config = { attributes: true, childList: true, characterData: true };
+
+observer.observe(document.querySelector('#js-repo-pjax-container'), config);

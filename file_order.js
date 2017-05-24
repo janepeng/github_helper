@@ -32,6 +32,7 @@ function swapFileElements(fileEl1, fileEl2) {
     var anchorEl2 = fileEl2.previousElementSibling;
     swapElements(fileEl1, fileEl2);
     swapElements(anchorEl1, anchorEl2);
+    saveFileOrder();
 }
 
 function moveFileUp(fileEl) {
@@ -81,6 +82,7 @@ function getFileOrder() {
 }
 
 function putFilesInOrder(fileOrder) {
+    fileOrder.reverse();
     fileOrder.forEach(function(anchorName) {
         var fileEl = document.querySelector(`[data-anchor=${anchorName}]`).closest('.file');
         var anchorEl = document.querySelector(`[name=${anchorName}]`);
@@ -89,10 +91,55 @@ function putFilesInOrder(fileOrder) {
     });
 }
 
+function saveFileOrder() {
+    var key = getPageKey() + "__fileorder";
+    var data = {};
+    data[key] = getFileOrder();
+    chrome.storage.sync.set(data, function () {});
+}
+
+function loadFileOrder() {
+    var key = getPageKey() + "__fileorder";
+    chrome.storage.sync.get(key, function(items) {
+        if (items[key]) {
+            putFilesInOrder(items[key]);
+        }
+    });
+}
+
+var pageInfo = {};
+function setPageInfo() {
+    var filesRE = /([\w-]+)\/([\w-]+)\/pull\/(\d+)\/files/g;
+    var commitsRE = /([\w-]+)\/([\w-]+)\/pull\/(\d+)\/commits\/(\w+)/g;
+    var path = window.location.pathname;
+    var matches = filesRE.exec(path) || commitsRE.exec(path);
+    if (matches) {
+        pageInfo = {
+            owner: matches[1],
+            repo: matches[2],
+            pr: matches[3],
+            sha: matches[4]
+        };
+    } else {
+        pageInfo = {};
+    }
+}
+
+function getPageKey() {
+    var key = `${pageInfo.owner}::${pageInfo.repo}::${pageInfo.pr}`;
+    if (pageInfo.sha) {
+        key += `::${pageInfo.sha}`;
+    }
+    return key;
+}
+
 document.querySelectorAll('.file-actions').forEach(addOrderingButtons);
+setPageInfo();
+loadFileOrder();
 
 var observer = new MutationObserver(function (mutations) {
     document.querySelectorAll('.file-actions').forEach(addOrderingButtons);
+    setPageInfo();
 });
 
 var config = { attributes: true, childList: true, characterData: true };

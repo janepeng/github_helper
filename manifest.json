@@ -20,7 +20,7 @@
     "content_scripts": [{
         "matches": ["https://github.com/*"],
         "css": ["css/file_type.css"],
-        "js": ["js/file_type.js", "js/utils.js", "js/file_order.js", "js/main.js"]
+        "js": ["js/file_type.js", "js/utils.js", "js/file_order.js", "js/file_expand.js", "js/main.js"]
     }],
     "permissions": [
         "activeTab",

@@ -72,6 +72,23 @@ function addOrderingButtons(toolbarEl) {
     toolbarEl.classList.add('has-ordering-buttons');
 }
 
+function getFileOrder() {
+    var fileOrder = [];
+    document.querySelectorAll('.file-header').forEach(function(file) {
+        fileOrder.push(file.attributes['data-anchor'].value);
+    });
+    return fileOrder;
+}
+
+function putFilesInOrder(fileOrder) {
+    fileOrder.forEach(function(anchorName) {
+        var fileEl = document.querySelector(`[data-anchor=${anchorName}]`).closest('.file');
+        var anchorEl = document.querySelector(`[name=${anchorName}]`);
+        fileEl.parentNode.prepend(fileEl);
+        anchorEl.parentNode.prepend(anchorEl);
+    });
+}
+
 document.querySelectorAll('.file-actions').forEach(addOrderingButtons);
 
 var observer = new MutationObserver(function (mutations) {

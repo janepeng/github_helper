@@ -67,3 +67,15 @@ function getPageKey() {
     }
     return key;
 }
+
+
+// PR file
+
+function getFiles() {
+    var files = [];
+    var fileInfo = document.getElementsByClassName("file-info");
+    for (var i = 0; i < fileInfo.length; i++) {
+        files.push({title: fileInfo[i].children[1].title, id: fileInfo[i].parentNode.parentNode.id, el: fileInfo[i]});
+    }
+    return files;
+}

@@ -1,13 +1,4 @@
 
-
-function isGithubPRView(tabUrl) {
-    if (!(tabUrl instanceof Array)) {
-        tabUrl = tabUrl.split('/');
-    }
-    // https://github.com/<owner>/<repo>/pull/<id>/files
-    return tabUrl.length >= 8 && tabUrl[2] == "github.com" && tabUrl[5] == "pull" && !isNaN(tabUrl[6]) && tabUrl[7] == "files";
-}
-
 function parseFileByType(files) {
     /* [{
         title: full_path_of_file,
@@ -40,33 +31,27 @@ function hideOrShowElement(hide, ids) {
     });
 }
 
-function scrollToBottom() {
-   document.body.scrollTop = document.body.scrollHeight;
+function loadPageIfNotLoaded() {
+    var fileInfo = document.getElementsByClassName("file-info");
+    var numFiles = document.getElementsByClassName("toc-select")[0].getElementsByTagName("strong")[0].innerText;
+    if (parseInt(numFiles, 10) != fileInfo.length) {
+        document.body.scrollTop = document.body.scrollHeight;
+    }
 }
 
-var files = [];
 function getFiles() {
+    var files = [];
     var fileInfo = document.getElementsByClassName("file-info");
     for (var i = 0; i < fileInfo.length; i++) {
         files.push({title: fileInfo[i].children[1].title, id: fileInfo[i].parentNode.parentNode.id});
     }
-    files = parseFileByType(files);
+    return parseFileByType(files);
 }
-
-// var scrollHeight;
-// while (scrollHeight != document.body.scrollHeight) {
-//     var fileInfo = document.getElementsByClassName("file-info");
-//     fileInfo[fileInfo.length-1].scrollTop = document.body.scrollHeight;
-//     console.log(scrollHeight, document.body.scrollHeight)
-//     scrollHeight = document.body.scrollHeight;
-// }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.type == "files_by_type") {
-        scrollToBottom();
-        if (isGithubPRView(document.location.toString())) {
-            getFiles();
-        }
+        loadPageIfNotLoaded();
+        var files = getFiles();
         sendResponse({"files": JSON.stringify(files)});
     } else if (request.type == "hide_or_show") {
         hideOrShowElement(request.hide, request.ids);

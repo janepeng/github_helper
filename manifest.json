@@ -12,7 +12,6 @@
         "persistent": true,
         "scripts": ["background.js"]
     },
-
     "browser_action": {
         "default_icon": "icon.png",
         "default_popup": "popup.html",
@@ -21,7 +20,7 @@
     "content_scripts": [{
         "matches": ["https://github.com/*"],
         "css": ["css/file_type.css"],
-        "js": ["js/file_type.js"]
+        "js": ["js/file_type.js", "file_order.js"]
     }],
     "permissions": [
         "activeTab",

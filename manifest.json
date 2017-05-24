@@ -18,7 +18,7 @@
         "default_title": "JIRA Linker"
     },
     "content_scripts": [{
-        "matches": ["https://github.com/*"],
+        "matches": ["https://github.com/*/*/pull/*"],
         "css": ["css/file_type.css"],
         "js": ["js/file_type.js", "js/utils.js", "js/file_order.js", "js/file_expand.js", "js/main.js"]
     }],

@@ -11,8 +11,8 @@ Download the extension, in chrome://extensions/, Load unpacked extension.
 ### Filter by file types
 
 * open a pull request, click on the chrome extension
-* make sure all file types in the pull requests show up in the extension popup
-* check/uncheck file types in popup should show/hide files in pull request
+* [ ] make sure all file types in the pull requests show up in the extension popup
+* [ ] check/uncheck file types in popup should show/hide files in pull request
 
 ### Reordering files
 

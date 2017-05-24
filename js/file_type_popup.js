@@ -1,19 +1,4 @@
 
-function save() {
-    var githubUsername = document.getElementById('github-username').value;
-    chrome.storage.sync.set({'github_username': githubUsername}, function() {
-        console.log("saved", githubUsername)
-    });
-}
-
-function load() {
-    chrome.storage.sync.get('github_username', function(result) {
-        if (result.github_username) {
-            document.getElementById('github-username').value = result.github_username;  
-        }
-    });
-}
-
 function filterByTypeListener() {
     var ids = this.id.split("+");
     var checkbox = this.getElementsByTagName('input')[0];
@@ -23,8 +8,7 @@ function filterByTypeListener() {
 }
 
 function parseObjectToCheckboxes(obj, container, listener) {
-    /* assumes obj have label
-    */
+    // assumes obj key is label
     for (var key in obj) {
         var idComb = obj[key].join("+");
         var checkboxGroup = document.createElement('div');
@@ -53,17 +37,6 @@ function parseObjectToCheckboxes(obj, container, listener) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // chrome.windows.getCurrent(function(window) {
-    //     chrome.tabs.query({active: true, windowId: window.id}, function(tabs) {
-    //         var currentTabUrl = tabs[0].url.split('/');
-    //         if (isGithubPRView(currentTabUrl)) {
-    //             var prId = parseInt(currentTabUrl[6], 10);
-    //             console.log(prId)
-    //         }
-    //     });
-    // });
-    console.log("loaded")
-
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {type: "files_by_type"}, function(response) {
             if (response.files) {

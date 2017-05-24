@@ -54,6 +54,7 @@ function putFilesInOrder(fileOrder) {
     fileOrder.reverse();
     fileOrder.forEach(function(anchorName) {
         var fileEl = getFileElForDataAnchor(anchorName);
+        if (!fileEl) return;
         var anchorEl = document.querySelector(`[name=${anchorName}]`);
         fileEl.parentNode.prepend(fileEl);
         anchorEl.parentNode.prepend(anchorEl);

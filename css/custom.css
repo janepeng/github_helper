@@ -1,7 +1,7 @@
 
 html {
     height: 150px;
-    width: 200px;
+    width: 300px;
 }
 
 body {
@@ -10,7 +10,23 @@ body {
     padding: 20px 30px;
 }
 
+body label {
+    font-size: 14px;
+}
+
+.sub-header {
+    font-size: 13px;
+}
+
 .github-username {
     overflow: hidden;
-    font-size: 14px;
+}
+
+.checkbox-list {
+    display: block;
+}
+
+.checkbox-list span {
+    margin-left: 6px;
+    font-size: 12px;
 }

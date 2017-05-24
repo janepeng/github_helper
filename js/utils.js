@@ -26,7 +26,8 @@ function getNextSiblingWhere(el, filter) {
 }
 
 function getFileElForDataAnchor(anchorName) {
-    return document.querySelector(`[data-anchor=${anchorName}]`).closest('.file');
+    var headerEl = document.querySelector(`[data-anchor=${anchorName}]`);
+    return headerEl ? headerEl.closest('.file') : null;
 }
 
 // Element Creation

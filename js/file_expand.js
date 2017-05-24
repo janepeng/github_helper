@@ -57,7 +57,9 @@ function loadCollapsedFiles() {
     chrome.storage.sync.get(key, function(items) {
         if (items[key]) {
             items[key].forEach(function(anchorName) {
-                collapseFileEl(getFileElForDataAnchor(anchorName));
+                var fileEl = getFileElForDataAnchor(anchorName);
+                if (!fileEl) return;
+                collapseFileEl(fileEl);
             });
         }
     });

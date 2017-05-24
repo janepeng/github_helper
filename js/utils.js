@@ -25,6 +25,10 @@ function getNextSiblingWhere(el, filter) {
     }
 }
 
+function getFileElForDataAnchor(anchorName) {
+    return document.querySelector(`[data-anchor=${anchorName}]`).closest('.file');
+}
+
 // Element Creation
 
 function createButton(text, tooltip, action) {

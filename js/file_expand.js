@@ -23,3 +23,42 @@ function addExpandCollapseButtons(toolbarEl) {
     toolbarEl.append(collapseEl);
     toolbarEl.classList.add('has-expand-collapse-buttons');
 }
+
+function getCollapsedFiles() {
+    var collapsedFiles = [];
+    document.querySelectorAll('.file.Details--on .file-header').forEach(function(file) {
+        collapsedFiles.push(file.attributes['data-anchor'].value);
+    });
+    return collapsedFiles;
+}
+
+function addExpandCollapseListener() {
+    document.querySelectorAll('.file .js-details-target').forEach(function (toggleEl) {
+        if (toggleEl.classList.contains('has-toggle-event-listener')) return;
+        toggleEl.addEventListener('click', interceptToggleExpand);
+        toggleEl.classList.add('has-toggle-event-listener');
+    });
+}
+
+function interceptToggleExpand() {
+    // Set timeout so that DOM is modified before saving
+    setTimeout(saveCollapsedFiles);
+}
+
+function saveCollapsedFiles() {
+    var key = getPageKey() + "__collapsedfiles";
+    var data = {};
+    data[key] = getCollapsedFiles();
+    chrome.storage.sync.set(data, function () {});
+}
+
+function loadCollapsedFiles() {
+    var key = getPageKey() + "__collapsedfiles";
+    chrome.storage.sync.get(key, function(items) {
+        if (items[key]) {
+            items[key].forEach(function(anchorName) {
+                collapseFileEl(getFileElForDataAnchor(anchorName));
+            });
+        }
+    });
+}

@@ -1,0 +1,15 @@
+
+.hidden {
+    display: none;
+}
+
+.review-marker {
+    position: absolute;
+    top: 15px;
+    right: -25px;
+}
+
+.sub-review-marker {
+    top: inherit;
+    margin-top: 6px;
+}

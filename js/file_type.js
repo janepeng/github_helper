@@ -32,14 +32,6 @@ function hideOrShowElement(hide, ids) {
     });
 }
 
-function loadPageIfNotLoaded() {
-    var fileInfo = document.getElementsByClassName("file-info");
-    var numFiles = document.getElementsByClassName("toc-select")[0].getElementsByTagName("strong")[0].innerText;
-    if (parseInt(numFiles, 10) != fileInfo.length) {
-        document.body.scrollTop = document.body.scrollHeight;
-    }
-}
-
 function getFilesByType() {
     return parseFileByType(getFiles());
 }

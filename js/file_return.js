@@ -36,7 +36,7 @@ function goToFocusFile() {
         var fileTitle = data[key];
         var file = getFileByTitle(fileTitle);
         if (file) {
-            window.scroll(0, file.el.getBoundingClientRect().top - 75);
+            window.location.hash = file.el.parentNode.attributes['data-anchor'].value;
         }
     });
 }

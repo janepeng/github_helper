@@ -6,7 +6,17 @@ Helps people to review pull requests the way they would like to.
 
 Download the extension, in chrome://extensions/, Load unpacked extension.
 
-## Feature
+## Features
+
+Github Helper makes PR review easier with the following features:
+
+- filtering by file type
+- ordering of file sequence
+- allowing you to mark files and portions of code as already reviewed
+- remembering the file you were last reviewing
+- collapsing/opening of all file diff sections
+
+## Testing
 
 ### Filter by file types
 

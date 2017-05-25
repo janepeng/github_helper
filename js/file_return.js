@@ -41,4 +41,16 @@ function goToFocusFile() {
     });
 }
 
-document.addEventListener("scroll", saveFocusFile);
+var delayedExec = function(after, fn) {
+    var timer;
+    return function() {
+        timer && clearTimeout(timer);
+        timer = setTimeout(fn, after);
+    };
+};
+
+var scrollSaver = delayedExec(500, function() {
+    saveFocusFile();
+});
+
+document.addEventListener("scroll", scrollSaver);

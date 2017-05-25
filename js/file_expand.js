@@ -9,10 +9,12 @@ function expandFileEl(fileEl) {
 
 function collapseAllFiles() {
     document.querySelectorAll('.file').forEach(collapseFileEl);
+    saveCollapsedFiles();
 }
 
 function expandAllFiles() {
     document.querySelectorAll('.file').forEach(expandFileEl);
+    saveCollapsedFiles();
 }
 
 function addExpandCollapseButtons(toolbarEl) {

@@ -80,6 +80,7 @@ function getFiles() {
         files.push({title: fileInfo[i].children[1].title, id: fileInfo[i].parentNode.parentNode.id, el: fileInfo[i]});
     }
     return files;
+}
 
 // github only loads the first section of diffs, a bunch of them are hidden
 // we want to compare the file count at the top of the page, versus the files we get from the dome
@@ -98,5 +99,5 @@ function isEqual(a, b) {
     a.forEach(function(item, index) {
         identical = identical && (item == b[index]);
     });
-    return identical
+    return identical;
 }

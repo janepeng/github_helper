@@ -2,23 +2,25 @@
 function filterByTypeListener() {
     var ids = this.id.split("+");
     var checkbox = this.getElementsByTagName('input')[0];
+    var fileType = this.getAttribute("data-filetype");
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {"type": "hide_or_show", "hide": checkbox.checked, "ids": ids}, function(){});
+        chrome.tabs.sendMessage(tabs[0].id, {"type": "hide_or_show", "hide": checkbox.checked, "ids": ids, "fileType": fileType}, function(){});
     });
 }
 
 function parseObjectToCheckboxes(obj, container, listener) {
     // assumes obj key is label
     for (var key in obj) {
-        var idComb = obj[key].join("+");
+        var idComb = obj[key].fileIds.join("+");
         var checkboxGroup = document.createElement('div');
         checkboxGroup.className = "checkbox-list";
         checkboxGroup.id = idComb;
         checkboxGroup.addEventListener('change', listener);
+        checkboxGroup.setAttribute("data-filetype", key);
 
         var checkbox = document.createElement('input');
         checkbox.type = "checkbox";
-        checkbox.checked = true;
+        checkbox.checked = obj[key].show;
 
         var span = document.createElement('span');
         span.htmlFor = key;

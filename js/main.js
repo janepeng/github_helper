@@ -16,3 +16,5 @@ var observer = new MutationObserver(function (mutations) {
 var config = { attributes: true, childList: true, characterData: true };
 
 observer.observe(document.querySelector('#js-repo-pjax-container'), config);
+
+goToFocusFile();

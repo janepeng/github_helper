@@ -39,19 +39,14 @@ function loadPageIfNotLoaded() {
     }
 }
 
-function getFiles() {
-    var files = [];
-    var fileInfo = document.getElementsByClassName("file-info");
-    for (var i = 0; i < fileInfo.length; i++) {
-        files.push({title: fileInfo[i].children[1].title, id: fileInfo[i].parentNode.parentNode.id});
-    }
-    return parseFileByType(files);
+function getFilesByType() {
+    return parseFileByType(getFiles());
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.type == "files_by_type") {
         loadPageIfNotLoaded();
-        var files = getFiles();
+        var files = getFilesByType();
         sendResponse({"files": JSON.stringify(files)});
     } else if (request.type == "hide_or_show") {
         hideOrShowElement(request.hide, request.ids);

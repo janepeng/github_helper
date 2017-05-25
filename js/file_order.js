@@ -2,11 +2,13 @@
 function handleMoveFileUp(e) {
     var fileEl = e.target.closest('.file');
     moveFileUp(fileEl);
+    saveFocusFile();
 }
 
 function handleMoveFileDown(e) {
     var fileEl = e.target.closest('.file');
     moveFileDown(fileEl);
+    saveFocusFile();
 }
 
 function swapFileElements(fileEl1, fileEl2) {

@@ -13,3 +13,15 @@
     top: inherit;
     margin-top: 6px;
 }
+
+.file > .file-header > .file-actions > a.btn-move-up {
+    display: none;
+}
+
+.file ~ .file > .file-header > .file-actions > a.btn-move-up {
+    display: inline-block;
+}
+
+.file:last-child > .file-header > .file-actions > a.btn-move-down {
+    display: none;
+}

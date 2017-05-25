@@ -40,10 +40,10 @@ function moveFileDown(fileEl) {
 
 function addOrderingButtons(toolbarEl) {
     if (toolbarEl.classList.contains('has-ordering-buttons')) return;
-    var moveUpEl = createButton("Move up", "Move file up in file order", handleMoveFileUp);
-    var moveDownEl = createButton("Move down", "Move file down in file order", handleMoveFileDown);
-    toolbarEl.prepend(moveUpEl);
+    var moveUpEl = createButton("Move up", "Move file up in file order", handleMoveFileUp, ["btn-move-up"]);
+    var moveDownEl = createButton("Move down", "Move file down in file order", handleMoveFileDown, ["btn-move-down"]);
     toolbarEl.prepend(moveDownEl);
+    toolbarEl.prepend(moveUpEl);
     toolbarEl.classList.add('has-ordering-buttons');
 }
 

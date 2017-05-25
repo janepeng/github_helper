@@ -32,7 +32,7 @@ function getFileElForDataAnchor(anchorName) {
 
 // Element Creation
 
-function createButton(text, tooltip, action) {
+function createButton(text, tooltip, action, extraClasses) {
     var button = document.createElement('a');
     button.innerHTML = text;
     if (tooltip) {
@@ -40,6 +40,11 @@ function createButton(text, tooltip, action) {
         addClasses(button, "tooltipped", "tooltipped-nw");
     }
     addClasses(button, "btn", "btn-sm");
+    if (extraClasses) {
+        extraClasses.forEach(function(className) {
+            addClasses(button, className);
+        });
+    }
     button.addEventListener('click', action);
     return button;
 }

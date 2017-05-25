@@ -35,8 +35,11 @@ function getFileElForDataAnchor(anchorName) {
 function createButton(text, tooltip, action) {
     var button = document.createElement('a');
     button.innerHTML = text;
-    button.setAttribute('aria-label', tooltip);
-    addClasses(button, "btn", "btn-sm", "tooltipped", "tooltipped-nw");
+    if (tooltip) {
+        button.setAttribute('aria-label', tooltip);
+        addClasses(button, "tooltipped", "tooltipped-nw");
+    }
+    addClasses(button, "btn", "btn-sm");
     button.addEventListener('click', action);
     return button;
 }
@@ -68,7 +71,6 @@ function getPageKey() {
     return key;
 }
 
-
 // PR file
 
 function getFiles() {
@@ -78,4 +80,23 @@ function getFiles() {
         files.push({title: fileInfo[i].children[1].title, id: fileInfo[i].parentNode.parentNode.id, el: fileInfo[i]});
     }
     return files;
+
+// github only loads the first section of diffs, a bunch of them are hidden
+// we want to compare the file count at the top of the page, versus the files we get from the dome
+// if they are equal, then the whole diff is loaded, otherwise, scroll to bottom of the page to load everything
+function loadPageIfNotLoaded() {
+    var files = document.getElementsByClassName("file");
+    var numFiles = document.getElementsByClassName("toc-select")[0].getElementsByTagName("strong")[0].innerText;
+    if (parseInt(numFiles, 10) != files.length) {
+        document.body.scrollTop = document.body.scrollHeight;
+    }
+}
+
+function isEqual(a, b) {
+    if (!a || !b || a.length != b.length) return false;
+    var identical = true;
+    a.forEach(function(item, index) {
+        identical = identical && (item == b[index]);
+    });
+    return identical
 }

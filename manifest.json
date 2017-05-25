@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Github Helper",
     "description": "This extension helps you review pull requests easier",
-    "version": "2.0",
+    "version": "1.0",
 
     "omnibox": { "keyword" : "ii" },
     "icons": {
@@ -19,8 +19,8 @@
     },
     "content_scripts": [{
         "matches": ["https://github.com/*/*/pull/*"],
-        "css": ["css/file_type.css"],
-        "js": ["js/utils.js", "js/file_return.js", "js/file_type.js", "js/file_order.js", "js/file_expand.js", "js/main.js"]
+        "css": ["css/main.css"],
+        "js": ["js/utils.js", "js/file_return.js", "js/file_type.js", "js/file_order.js", "js/file_expand.js", "js/review_marker.js", "js/main.js"]
     }],
     "permissions": [
         "activeTab",

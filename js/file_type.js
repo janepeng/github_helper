@@ -32,16 +32,17 @@ function hideOrShowElement(hide, ids) {
     });
 }
 
-function loadPageIfNotLoaded() {
-    var fileInfo = document.getElementsByClassName("file-info");
-    var numFiles = document.getElementsByClassName("toc-select")[0].getElementsByTagName("strong")[0].innerText;
-    if (parseInt(numFiles, 10) != fileInfo.length) {
-        document.body.scrollTop = document.body.scrollHeight;
-    }
-}
-
 function getFilesByType() {
     return parseFileByType(getFiles());
+}
+
+function getFiles() {
+    var files = [];
+    var fileInfo = document.getElementsByClassName("file-info");
+    for (var i = 0; i < fileInfo.length; i++) {
+        files.push({title: fileInfo[i].children[1].title, id: fileInfo[i].parentNode.parentNode.id});
+    }
+    return parseFileByType(files);
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {

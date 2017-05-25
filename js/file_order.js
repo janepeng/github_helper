@@ -12,8 +12,11 @@ function handleMoveFileDown(e) {
 function swapFileElements(fileEl1, fileEl2) {
     var anchorEl1 = fileEl1.previousElementSibling;
     var anchorEl2 = fileEl2.previousElementSibling;
+    var linkEl1 = document.querySelector(`a.select-menu-item[href$="${anchorEl1.name}"]`)
+    var linkEl2 = document.querySelector(`a.select-menu-item[href$="${anchorEl2.name}"]`)
     swapElements(fileEl1, fileEl2);
     swapElements(anchorEl1, anchorEl2);
+    swapElements(linkEl1, linkEl2);
     saveFileOrder();
 }
 
@@ -56,8 +59,10 @@ function putFilesInOrder(fileOrder) {
         var fileEl = getFileElForDataAnchor(anchorName);
         if (!fileEl) return;
         var anchorEl = document.querySelector(`[name=${anchorName}]`);
+        var linkEl = document.querySelector(`a.select-menu-item[href$="${anchorName}"]`)
         fileEl.parentNode.prepend(fileEl);
         anchorEl.parentNode.prepend(anchorEl);
+        linkEl.parentNode.prepend(linkEl);
     });
 }
 

@@ -41,7 +41,7 @@ function parseObjectToCheckboxes(obj, container, listener) {
 document.addEventListener('DOMContentLoaded', function() {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {type: "files_by_type"}, function(response) {
-            if (response.files) {
+            if (response && response.files) {
                 var files = JSON.parse(response.files);
                 var container = document.getElementById("filer-by-file-type");
                 parseObjectToCheckboxes(files, container, filterByTypeListener);

@@ -1,7 +1,7 @@
 
 html {
     height: 150px;
-    width: 300px;
+    width: 350px;
 }
 
 body {
@@ -11,7 +11,7 @@ body {
 }
 
 body label {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .sub-header {
@@ -28,5 +28,47 @@ body label {
 
 .checkbox-list span {
     margin-left: 6px;
+}
+
+.tab {
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab button {
     font-size: 12px;
+    border: none;
+    cursor: pointer;
+    padding: 5px 8px;
+    background-color: #fff;
+    border-radius: 4px 4px 0 0;
+}
+
+.tab button:focus {
+    outline: 0;
+}
+
+.tab button:hover {
+    background-color: #eee;
+}
+
+.tab button.active, .tab button.active:focus, .tab button.active:hover {
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    cursor: default;
+    color: #555;
+    background-color: transparent;
+}
+
+.tabcontent {
+    margin-top: 15px;
+    display: none;
+}
+
+.tabcontent.active {
+    display: block;
+}
+
+.form-control {
+    margin-bottom: 10px;
 }

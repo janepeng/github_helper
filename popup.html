@@ -3,15 +3,37 @@
     <head>
         <title>Chrome Helper</title>
 
-        <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+        <!-- <script src="js/bootstrap.min.js"></script> -->
         <script src="js/file_type_popup.js"></script>
-        
+        <script src="js/url_shortcut.js"></script>
+
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="css/custom.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <label>Github Code Review</label>
-        <div id="filer-by-file-type">
+        <div class="tab">
+            <button class="tablinks active" name="review-helper">Github Code Review</button>
+            <button class="tablinks"  name="settings">Settings</button>
+        </div>
+
+        <div id="review-helper" class="tabcontent active">
+            <div id="filer-by-file-type"></div>
+        </div>
+
+        <div id="settings" class="tabcontent">
+            <div class="form-group">
+                <label>JIRA Server:</label>
+                <input type="text" class="form-control" id="jira-server">
+
+                <label>Github Owner:</label>
+                <input type="text" class="form-control" id="github-owner">
+
+                <label>Github Repo:</label>
+                <input type="text" class="form-control" id="github-repo">
+
+                <label>Github username:</label>
+                <input type="text" class="form-control" id="github-username">
+            </div>
         </div>
     </body>
 </html>

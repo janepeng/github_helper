@@ -27,3 +27,11 @@ Download the extension, in chrome://extensions/, Load unpacked extension.
 * Go to the files page of a pull request
 * [ ] There are buttons to expand all files or collapse all files, and they do those things
 * [ ] If you expand and collapse individual files, when you reload, they are still in the same state
+
+### URL shortcuts
+
+* Define your github owner/repository/username in settings
+* [ ] type your username, a suggestion to your github pull request page should show up
+* [ ] type your co-worker's username, a suggestion to his/her github pull request page should show up
+* Define your JIRA server in settings
+* [ ] type JIRA ticket number should have a suggestion to the ticket should show up

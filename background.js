@@ -34,12 +34,14 @@ function constructGithubUrl() {
     loading = false;
 }
 
+var suggestions = [];
+
 // This event is fired each time the user updates the text in the omnibox,
 // as long as the extension's keyword mode is still active.
 chrome.omnibox.onInputChanged.addListener(
     function(text, suggest) {
         constructGithubUrl();
-        var suggestions = [];
+        suggestions = [];
         var urls = [];
         if (isNaN(text)) {
             if (settings.jiraServer && text.substr(0, 4).toLowerCase() == 'per-') {
@@ -71,6 +73,9 @@ chrome.omnibox.onInputEntered.addListener(
             var url = "";
             if (text.substr(0, 8) == 'https://') {
                 url = text;
+            } else if (suggestions.length) {
+                // too lazy to press the arrow key, go to the first suggestion directly
+                url = suggestions[0].content;
             }
             chrome.tabs.update(tab.id, {url: url});
         });

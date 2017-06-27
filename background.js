@@ -70,14 +70,16 @@ chrome.omnibox.onInputChanged.addListener(
 chrome.omnibox.onInputEntered.addListener(
     function(text) {
         chrome.tabs.getSelected(null, function(tab) {
-            var url = "";
+            var url;
             if (text.substr(0, 8) == 'https://') {
                 url = text;
             } else if (suggestions.length) {
                 // too lazy to press the arrow key, go to the first suggestion directly
                 url = suggestions[0].content;
             }
-            chrome.tabs.update(tab.id, {url: url});
+            if (url) {
+                chrome.tabs.update(tab.id, {url: url});
+            }
         });
     }
 );

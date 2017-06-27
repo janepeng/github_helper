@@ -16,6 +16,9 @@ Github Helper makes PR review easier with the following features:
 - remembering the file you were last reviewing
 - collapsing/opening of all file diff sections
 
+It also comes with a customized omnibox with keyword "ii". By setting your github/JIRA info in the popup settings,
+you will be able to get to the desired page much easier.
+
 ## Testing
 
 ### Filter by file types

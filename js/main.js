@@ -1,17 +1,24 @@
 
+function addButtonsToReviewPage() {
+    document.querySelectorAll('.file-actions').forEach(function(element) {
+        var viewBtn = element.getElementsByClassName('btn-sm')[0];
+        addOrderingButtons(element);
+    });
+    document.querySelectorAll('.pr-toolbar .diffbar').forEach(addExpandCollapseButtons);
+    /**************** review marker starts ******************/
+    document.querySelectorAll('.pr-toolbar .diffbar').forEach(addReviewButton);
+    /***************** review marker ends *******************/
+    addExpandCollapseListener();
+    setPageInfo();
+}
+
 var pageInfo = {};
-document.querySelectorAll('.file-actions').forEach(addOrderingButtons);
-document.querySelectorAll('.pr-toolbar .diffbar').forEach(addExpandCollapseButtons);
-addExpandCollapseListener();
-setPageInfo();
+addButtonsToReviewPage();
 loadFileOrder();
 loadCollapsedFiles();
 
 var observer = new MutationObserver(function (mutations) {
-    document.querySelectorAll('.file-actions').forEach(addOrderingButtons);
-    document.querySelectorAll('.pr-toolbar .diffbar').forEach(addExpandCollapseButtons);
-    addExpandCollapseListener();
-    setPageInfo();
+    addButtonsToReviewPage();
 });
 
 var config = { attributes: true, childList: true, characterData: true };
@@ -20,6 +27,3 @@ observer.observe(document.querySelector('#js-repo-pjax-container'), config);
 
 goToFocusFile();
 
-/**************** review marker starts ******************/
-document.querySelectorAll('.pr-toolbar .diffbar').forEach(addReviewButton);
-/***************** review marker ends *******************/

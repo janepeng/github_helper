@@ -22,7 +22,7 @@ function load() {
 }
 load();
 
-var githubUrl;
+var githubUrl, githubPRUrl;
 var loading = true;
 function constructGithubUrl() {
     if (!loading) {
@@ -30,6 +30,7 @@ function constructGithubUrl() {
     }
     if (settings.githubOwner && settings.githubRepo) {
         githubUrl = "https://github.com/" + settings.githubOwner + "/" + settings.githubRepo + "/pulls/";
+        githubPRUrl = "https://github.com/" + settings.githubOwner + "/" + settings.githubRepo + "/pull/";
     }
     loading = false;
 }
@@ -44,7 +45,7 @@ chrome.omnibox.onInputChanged.addListener(
         suggestions = [];
         var urls = [];
         if (isNaN(text)) {
-            if (settings.jiraServer && text.substr(0, 4).toLowerCase() == 'per-') {
+            if (settings.jiraServer && text.substr(0, 3).toLowerCase() == 'nu-') {
                 urls.push("https://" + settings.jiraServer + "/browse/" + text);
             } else if (githubUrl) {
                 if (settings.githubUsername && settings.githubUsername.indexOf(text) > -1) {
@@ -56,8 +57,13 @@ chrome.omnibox.onInputChanged.addListener(
                     }
                 }
             }
-        } else if (settings.jiraServer) {
-            urls.push("https://" + settings.jiraServer + "/browse/PER-" + text);
+        } else {
+            if (settings.jiraServer) {
+                urls.push("https://" + settings.jiraServer + "/browse/NU-" + text);
+            }
+            if (githubPRUrl) {
+                urls.push(githubPRUrl + text);
+            }
         }
         urls.forEach(function(url) {
             suggestions.push({content: url, description: url});

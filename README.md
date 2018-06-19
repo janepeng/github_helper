@@ -10,6 +10,7 @@ Download the extension, in chrome://extensions/, Load unpacked extension.
 
 Github Helper makes PR review easier with the following features:
 
+- the ability to enable/disable github helper
 - filtering by file type
 - ordering of file sequence
 - allowing you to mark files and portions of code as already reviewed
@@ -20,6 +21,12 @@ It also comes with a customized omnibox with keyword "ii". By setting your githu
 you will be able to get to the desired page much easier.
 
 ## Testing
+
+### Enable/Disable github helper
+* open popup, under Github Code Review tab, enable github helper
+* [ ] open a pull request files page, you see extra buttons (such as Move Up) are added to the review page.
+* open popup, under Github Code Review tab, disable github helper
+* [ ] open a pull request files page, you don't see any extra buttons added to the review page.
 
 ### Filter by file types
 

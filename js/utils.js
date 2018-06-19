@@ -106,3 +106,29 @@ function isEqual(a, b) {
     });
     return identical;
 }
+
+// HELPER for settings
+var STRING_CAMELIZE_REGEXP_1 = /(\-|\_|\s)+(.)?/g;/(\-|\_|\s)+(.)?/g
+var STRING_CAMELIZE_REGEXP_2 = /(^|\/)([A-Z])/g;
+function camelize(str) {
+    return str.replace(STRING_CAMELIZE_REGEXP_1, function (match, separator, chr) {
+        return chr ? chr.toUpperCase() : '';
+    }).replace(STRING_CAMELIZE_REGEXP_2, function (match, separator, chr) {
+        return match.toLowerCase();
+    });
+};
+
+function load(supported_settings, callBack) {
+    var settings = {};
+    chrome.storage.sync.get(supported_settings, function (result) {
+        supported_settings.forEach(function(setting) {
+            if (result[setting]) {
+                settings[camelize(setting)] = result[setting];
+            }
+        });
+        if (callBack) {
+            callBack(settings);
+        }
+        return settings;
+    });
+}

@@ -11,12 +11,20 @@
         <link href="css/custom.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div class="tab">
+        <div class="tab custom-tab">
             <button class="tablinks active" name="review-helper">Github Code Review</button>
             <button class="tablinks"  name="settings">Settings</button>
         </div>
 
         <div id="review-helper" class="tabcontent active">
+            <div class="btn-group" role="group" id="review-helper-feature">
+                <button type="button" class="btn btn-secondary" id="review-helper-enabled" value="true">Helper Enabled</button>
+                <button type="button" class="btn btn-secondary" id="review-helper-disabled" value="false">OFF</button>
+            </div>
+            <div>
+                <span class="text-muted">You need to refresh page to apply setting changes.</span>
+            </div>
+            <br>
             <div id="filer-by-file-type"></div>
         </div>
 

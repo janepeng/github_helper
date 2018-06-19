@@ -35,7 +35,7 @@ body label {
     border-bottom: 1px solid #ddd;
 }
 
-.tab button {
+.custom-tab button {
     font-size: 12px;
     border: none;
     cursor: pointer;
@@ -48,11 +48,11 @@ body label {
     outline: 0;
 }
 
-.tab button:hover {
+.custom-tab button:hover {
     background-color: #eee;
 }
 
-.tab button.active, .tab button.active:focus, .tab button.active:hover {
+.custom-tab button.active, .custom-tab button.active:focus, .custom-tab button.active:hover {
     border: 1px solid #ddd;
     border-bottom-color: transparent;
     cursor: default;
@@ -63,6 +63,17 @@ body label {
 .tabcontent {
     margin-top: 15px;
     display: none;
+}
+
+.tabcontent button {
+    border: 1px solid #ddd;
+}
+
+.tabcontent button:active, .tabcontent button:focus, .tabcontent button:hover,
+.tabcontent button.active, .tabcontent button.active:focus, .tabcontent button.active:hover {
+    color: white;
+    background-color: #5ca4d8;
+    outline: 0;
 }
 
 .tabcontent.active {

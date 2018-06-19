@@ -1,26 +1,13 @@
 
-var STRING_CAMELIZE_REGEXP_1 = /(\-|\_|\s)+(.)?/g;/(\-|\_|\s)+(.)?/g
-var STRING_CAMELIZE_REGEXP_2 = /(^|\/)([A-Z])/g;
-function camelize(str) {
-    return str.replace(STRING_CAMELIZE_REGEXP_1, function (match, separator, chr) {
-        return chr ? chr.toUpperCase() : '';
-    }).replace(STRING_CAMELIZE_REGEXP_2, function (match, separator, chr) {
-        return match.toLowerCase();
-    });
-};
-
-var settings = {};
 var supported_settings = ['jira_server', 'github_owner', 'github_repo', 'github_username'];
-function load() {
-    chrome.storage.sync.get(supported_settings, function (result) {
-        supported_settings.forEach(function(setting) {
-            if (result[setting]) {
-                settings[camelize(setting)] = result[setting];
-            }
-        });
-    });
+var settings = {};
+
+function loadSettings(response) {
+    settings = response;
+    console.log(settings)
 }
-load();
+
+load(supported_settings, loadSettings);
 
 var githubUrl, githubPRUrl;
 var loading = true;

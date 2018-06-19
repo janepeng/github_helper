@@ -12,18 +12,25 @@ function addButtonsToReviewPage() {
     setPageInfo();
 }
 
-var pageInfo = {};
-addButtonsToReviewPage();
-loadFileOrder();
-loadCollapsedFiles();
+function callBack(settings) {
+    if (settings.reviewHelperFeature == "true") {
+        var pageInfo = {};
+        addButtonsToReviewPage();
+        loadFileOrder();
+        loadCollapsedFiles();
 
-var observer = new MutationObserver(function (mutations) {
-    addButtonsToReviewPage();
-});
+        var observer = new MutationObserver(function (mutations) {
+            addButtonsToReviewPage();
+        });
 
-var config = { attributes: true, childList: true, characterData: true };
+        var config = { attributes: true, childList: true, characterData: true };
 
-observer.observe(document.querySelector('#js-repo-pjax-container'), config);
+        observer.observe(document.querySelector('#js-repo-pjax-container'), config);
 
-goToFocusFile();
+        goToFocusFile();
+    }   
+}
+
+var supported_settings = ['review_helper_feature'];
+load(supported_settings, callBack);
 

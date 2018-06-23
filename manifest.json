@@ -19,8 +19,11 @@
     },
     "content_scripts": [{
         "matches": ["https://github.com/*/*/pull/*"],
+        "js": ["js/utils.js", "js/jira_linker.js"]
+    }, {
+        "matches": ["https://github.com/*/*/pull/*/files"],
         "css": ["css/main.css"],
-        "js": ["js/utils.js", "js/file_return.js", "js/file_type.js", "js/file_order.js", "js/file_expand.js", "js/review_marker.js", "js/main.js"]
+        "js": ["js/file_return.js", "js/file_type.js", "js/file_order.js", "js/file_expand.js", "js/review_marker.js", "js/main.js"]
     }],
     "permissions": [
         "activeTab",

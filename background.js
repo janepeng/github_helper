@@ -4,7 +4,6 @@ var settings = {};
 
 function loadSettings(response) {
     settings = response;
-    console.log(settings)
 }
 
 load(supported_settings, loadSettings);
@@ -32,7 +31,7 @@ chrome.omnibox.onInputChanged.addListener(
         suggestions = [];
         var urls = [];
         if (isNaN(text)) {
-            if (settings.jiraServer && text.substr(0, 3).toLowerCase() == 'nu-') {
+            if (settings.jiraServer && (text.substr(0, 3).toLowerCase() == 'nu-' || text.substr(0, 5).toLowerCase() == 'ulti-')) {
                 urls.push("https://" + settings.jiraServer + "/browse/" + text);
             } else if (githubUrl) {
                 if (settings.githubUsername && settings.githubUsername.indexOf(text) > -1) {
@@ -47,6 +46,7 @@ chrome.omnibox.onInputChanged.addListener(
         } else {
             if (settings.jiraServer) {
                 urls.push("https://" + settings.jiraServer + "/browse/NU-" + text);
+                urls.push("https://" + settings.jiraServer + "/browse/ULTI-" + text);
             }
             if (githubPRUrl) {
                 urls.push(githubPRUrl + text);

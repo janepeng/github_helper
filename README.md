@@ -8,8 +8,9 @@ Download the extension, in chrome://extensions/, Load unpacked extension.
 
 ## Features
 
-Github Helper makes PR review easier with the following features:
+Github Helper comes with following features:
 
+- pr title/comments contents that contains JIRA stories are auto linked.
 - the ability to enable/disable github helper
 - filtering by file type
 - ordering of file sequence
@@ -21,6 +22,10 @@ It also comes with a customized omnibox with keyword "ii". By setting your githu
 you will be able to get to the desired page much easier.
 
 ## Testing
+
+### Link JIRA tickets
+* open a pull request with JIRA links in header and pr comments
+* [ ] the JIRA tickets are linked, click on link will redirect to JIRA story
 
 ### Enable/Disable github helper
 * open popup, under Github Code Review tab, enable github helper

@@ -74,7 +74,7 @@ function refetch(ticketID) {
     console.log("refetch ", ticketID);
 
     // construct github url
-    var githubURI = "https://api.github.com/search/issues?q=" + ticketID + "+is:pr+state:open+in:title";
+    var githubURI = "https://api.github.com/search/issues?q=" + ticketID + "+is:pr+in:title";
     sendRequest(githubURI, function (response) {
         response = JSON.parse(response);
         // console.log(response)

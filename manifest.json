@@ -6,7 +6,9 @@
 
     "omnibox": { "keyword" : "ii" },
     "icons": {
-        "16": "icon.png"
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
     },
     "background": {
         "persistent": false,
@@ -25,8 +27,9 @@
         "css": ["css/main.css"],
         "js": ["js/file_return.js", "js/file_type.js", "js/file_order.js", "js/file_expand.js", "js/review_marker.js", "js/main.js"]
     }, {
-        "matches": ["https://*/browse/*-*"],
-        "js": ["js/utils.js", "js/link_pr.js"]
+        "matches": ["https://*/browse/*-*", "https://*/secure/*selectedIssue=*-*"],
+        "js": ["js/utils.js", "js/link_pr.js"],
+        "run_at": "document_end"
     }],
     "permissions": [
         "activeTab",

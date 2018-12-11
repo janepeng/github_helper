@@ -11,6 +11,7 @@ Download the extension, in chrome://extensions/, Load unpacked extension.
 Github Helper comes with following features:
 
 - JIRA will have an additional section under People if there are pull requests associated with that ticket.
+- Kanban board selected issue view will have an additional section under Details if there are pull requests associated with selected ticket. Change selection will update the Pull Request section.
 - pr title/comments contents that contains JIRA stories are auto linked.
 - the ability to enable/disable github helper
 - filtering by file type
@@ -29,6 +30,9 @@ you will be able to get to the desired page much easier.
 * [ ] related prs should show under the Pull Requests Created section
 * note that this only works between the JIRA server and github repo you specify
 * note that you need to have read access and create an access token for this extention to access the data
+
+* open a Kanban board, click on one of the tickets which has pull requests relates to them in Github
+* [ ] related prs should show under the Pull Requests Created section
 
 ### Link JIRA tickets
 * open a pull request with JIRA links in header and pr comments

@@ -17,7 +17,7 @@ function openTab() {
 }
 
 var buttons = ['review-helper-enabled', 'review-helper-disabled']
-var settings = ['review_helper_feature', 'jira_server', 'github_owner', 'github_repo', 'github_username', 'github_oauth'];
+var settings = ['review_helper_feature', 'jira_server', 'jira_prefix', 'github_owner', 'github_repo', 'github_username', 'github_oauth'];
 
 function toggleButtonState(element) {
     // remove active class for siblings elements

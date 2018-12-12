@@ -12,7 +12,7 @@ Github Helper comes with following features:
 
 - JIRA will have an additional section under People if there are pull requests associated with that ticket.
 - Kanban board selected issue view will have an additional section under Details if there are pull requests associated with selected ticket. Change selection will update the Pull Request section.
-- pr title/comments contents that contains JIRA stories are auto linked.
+- pr title/comments contents that contains JIRA stories are auto linked if you specify the prefix in settings.
 - the ability to enable/disable github helper
 - filtering by file type
 - ordering of file sequence

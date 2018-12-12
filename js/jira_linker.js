@@ -1,24 +1,23 @@
 
-var supported_settings = ['jira_server'];
-var issuePatterns = [/ULTI-\d+/gim, /NU-\d+/gim];
+var supported_settings = ['jira_server', 'jira_prefix'];
+var regex;
 var settings = {};
 
 function loadSettings(response) {
     settings = response;
+    regex = new RegExp(settings.jiraPrefix + '\\d+', "gim");
     linkJIRA();
 }
 
 function findAndReplace(element, text) {
     var link;
-    issuePatterns.forEach(function(pattern) {
-        var matches = text.match(pattern);
-        if (!matches) {
-            return;
-        }
-        matches.forEach(function(match) {
-            link = '<a href="http://' + settings.jiraServer + '/browse/' + match + '">' + match + '</a>'
-            element.innerHTML = element.innerHTML.replace(match, link);
-        });
+    var matches = text.match(regex);
+    if (!matches) {
+        return;
+    }
+    matches.forEach(function(match) {
+        link = '<a href="http://' + settings.jiraServer + '/browse/' + match + '">' + match + '</a>'
+        element.innerHTML = element.innerHTML.replace(match, link);
     });
 }
 

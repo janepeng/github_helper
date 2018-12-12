@@ -1,5 +1,5 @@
 
-var supported_settings = ['jira_server', 'github_owner', 'github_repo', 'github_username'];
+var supported_settings = ['jira_server', 'jira_prefix', 'github_owner', 'github_repo', 'github_username'];
 var settings = {};
 
 function loadSettings(response) {
@@ -31,7 +31,7 @@ chrome.omnibox.onInputChanged.addListener(
         suggestions = [];
         var urls = [];
         if (isNaN(text)) {
-            if (settings.jiraServer && (text.substr(0, 3).toLowerCase() == 'nu-' || text.substr(0, 5).toLowerCase() == 'ulti-')) {
+            if (settings.jiraServer && (text.substr(0, 5).toLowerCase() == settings.jiraPrefix.toLowerCase())) {
                 urls.push("https://" + settings.jiraServer + "/browse/" + text);
             } else if (githubUrl) {
                 if (settings.githubUsername && settings.githubUsername.indexOf(text) > -1) {
@@ -45,8 +45,7 @@ chrome.omnibox.onInputChanged.addListener(
             }
         } else {
             if (settings.jiraServer) {
-                urls.push("https://" + settings.jiraServer + "/browse/NU-" + text);
-                urls.push("https://" + settings.jiraServer + "/browse/ULTI-" + text);
+                urls.push("https://" + settings.jiraServer + "/browse/" + settings.jiraPrefix + text);
             }
             if (githubPRUrl) {
                 urls.push(githubPRUrl + text);
